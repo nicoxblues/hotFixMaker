@@ -13,11 +13,14 @@ class FileHandler:
         self.reportPath = fafReport
         self.outputModule = []
         self.outputCodeFile = []
-        pathMap = {'realPath': [], 'relativePath': []}
-        # TODO debe haber una mejor maenera de hacer esto !
-        self.filePath = {'fafReport': {'realPath': [], 'relativePath': []},
-                         moduleName + 'Web': {'realPath': [], 'relativePath': []},
-                         'Script': {'realPath': [], 'relativePath': []}}
+
+        def getPathMap():
+            return {'realPath': [], 'relativePath': []}
+
+
+        self.filePath = {'fafReport': getPathMap(),
+                         moduleName + 'WEB': getPathMap(),
+                         'Script': getPathMap()}
 
     def getHFPath(self):
         return self.hfPath
@@ -104,4 +107,4 @@ class FileHandler:
                 # os.makedirs(self.getHFPath() + "test/test1/subDir")
                 #
         if len(self.filePath['fafReport']['relativePath']) > 0:
-            tree.write(self.getHFPath() + "fafReport/file.xml")
+            tree.write(self.getHFPath() + "fafReport/files.xml")

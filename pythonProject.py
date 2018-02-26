@@ -1,5 +1,12 @@
 from FileHandler import FileHandler
 
-fileH = FileHandler(1500,  "BSuite", "/home/nicoblues/workspaceSVN/BsuiteGit/Codigo", "/home/nicoblues/hotfix/", "/home/nicoblues/workspaceSVN/BsuiteGit/Resources")
+
+moduleName = "Interelec"
+modulePath = "/home/administrador/workingSpace/Interelec"
+hotFixPath = "/home/administrador/HotFix/"
+resourcesPath = "/home/administrador/workingSpace/Interelec/Resource"
+
+
+fileH = FileHandler(12, moduleName, modulePath, hotFixPath, resourcesPath)
 
 fileH.createHotFixFolder()
