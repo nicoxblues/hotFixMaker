@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><root version="2" name="default" currentLayout="WebReportGridLayout" libraries="INTER_ReservarPedidosV2">
+    <fields>
+        <field name="CLIENTEID" type="NOTVISIBLE" caption="ClienteID" mask="" width="50" colWidth="71" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="TOTALVENTADIA" type="NOTVISIBLE" caption="totalVentaDia" mask="" width="50" colWidth="71" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="ITEMASIGNADO" type="VISIBLE" caption="Item asignado" mask="" width="100" colWidth="96" truncable="true" printable="true" editable="false" dataType="S" url="FAF:CLICK;ReservaPedidosInterelec_itemSelection(this,grid,row,rowIndex)" fixedWidth="false"/>
+
+        <field name="PEDIDO/SUCURSAL" type="VISIBLE" caption="Pedido/sucursal" mask="" width="22" colWidth="95" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="FECHA" type="VISIBLE" caption="Fecha" mask="" width="0" colWidth="95" truncable="true" printable="false" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="PEDIDO" type="VISIBLE" caption="Pedido" mask="" width="62" colWidth="96" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="CODIGO CLIENTE" type="VISIBLE" caption="Codigo cliente" mask="" width="0" colWidth="95" truncable="true" printable="false" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="CLIENTE" type="VISIBLE" caption="Cliente" mask="" width="62" colWidth="96" truncable="true" printable="true" editable="false" dataType="S" url="FAF:SNAPVIEW" fixedWidth="false"/>
+        <field name="VERINFO" type="VISIBLE" caption="Info" mask="" width="100" colWidth="96" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="SUCURSAL" type="NOTVISIBLE" caption="Sucursal" mask="" width="62" colWidth="99" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="STOCK" type="NOTVISIBLE" caption="Stock disponible" mask="" width="62" colWidth="56" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="CANTIDADPENDIENTE" type="VISIBLE" caption="Cantidad pedida" mask="MASCARACANTIDAD" width="150" colWidth="95" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="PRECIO" type="VISIBLE" caption="Precio" mask="MASCARAPRECIO" width="37" colWidth="96" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="CANTIDADASIGNADA" type="VISIBLE" caption="Cantidad asignada" mask="MASCARACANTIDAD" width="150" colWidth="95" truncable="true" printable="true" editable="true" dataType="S" url="" fixedWidth="false"/>
+        <field name="TOPE DE ENTREGA" type="NOTVISIBLE" caption="Tope de entrega" mask="" width="33" colWidth="71" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="STOCKINICIAL" type="NOTVISIBLE" caption="Stock" mask="" width="62" colWidth="91" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="REMITO POR OC" type="NOTVISIBLE" caption="Remito por OC" mask="" width="62" colWidth="80" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="IMPORTEASIGNADO" type="VISIBLE" caption="Importe asignado" mask="MASCARAIMPORTE" width="0" colWidth="96" truncable="true" printable="false" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="NUM INTERNO" type="NOTVISIBLE" caption="Num interno" mask="" width="50" colWidth="85" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="PRODUCTO" type="VISIBLE" caption="Producto" mask="" width="62" colWidth="68" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="OPERACIONITEMID" type="NOTVISIBLE" caption="OperacionItemID" mask="" width="50" colWidth="57" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="TRANSACCIONID" type="NOTVISIBLE" caption="TransaccionID" mask="" width="0" colWidth="73" truncable="true" printable="false" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="SUCURSALID" type="NOTVISIBLE" caption="SucursalID" mask="" width="28" colWidth="73" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="PRECIOSINIMPUSTOS" type="NOTVISIBLE" caption="precioSinImpustos" mask="" width="18" colWidth="99" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="CODIGOPRODUCTO" type="VISIBLE" caption="Codigo producto" mask="" width="50" colWidth="95" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="FECHA_YEAR" type="NOTVISIBLE" caption="Año - Fecha" mask="" width="0" colWidth="0" truncable="true" printable="false" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="FECHA_MONTH" type="NOTVISIBLE" caption="Mes - Fecha" mask="" width="0" colWidth="0" truncable="true" printable="false" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="FECHA_WEEK" type="NOTVISIBLE" caption="Semana - Fecha" mask="" width="0" colWidth="0" truncable="true" printable="false" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="PRODUCTOID" type="NOTVISIBLE" caption="ProductoID" mask="" width="62" colWidth="74" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="IMPORTEBRUTO" type="NOTVISIBLE" caption="Importe Bruto" mask="" width="0" colWidth="157" truncable="true" printable="false" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="TOTAL PRODUCTO" type="VISIBLE" caption="Total Producto" mask="MASCARAIMPORTE" width="18" colWidth="98" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="PORCENTAJE" type="VISIBLE" caption="Porc" mask="" width="50" colWidth="50" truncable="true" printable="false" editable="false" dataType="S" url="" fixedWidth="true"/>
+        <field name="PRECIOSINIMPUESTOS" type="VISIBLE" caption="Precio sin impuestos" mask="MASCARAPRECIO" width="17" colWidth="141" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="IMPORTETOTALPEDIDO" type="NOTVISIBLE" caption="Importe Total" mask="MASCARAIMPORTE" width="50" colWidth="91" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="CANTIDADASIGNADAOLD" type="NOTVISIBLE" caption="IMPORTE OLD" mask="MASCARAIMPORTE" width="50" colWidth="0" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="RESERVA PROFORMA" type="NOTVISIBLE" caption="reserva proforma" mask="" width="33" colWidth="73" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="IMPORTETOTAL" type="NOTVISIBLE" caption="Total producto  " mask="" width="50" colWidth="91" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="TOPEENTREGAINICIAL" type="NOTVISIBLE" caption="TopeEntregaInicial" mask="" width="18" colWidth="75" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="ASIGNADOFACTURADO" type="NOTVISIBLE" caption="ASIGNADOFACTURADO" mask="" width="18" colWidth="56" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="IMPORTEBRUTOITEM" type="NOTVISIBLE" caption="ImporteBrutoItem" mask="" width="37" colWidth="178" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="IMPORTE" type="NOTVISIBLE" caption="Importe" mask="MASCARAIMPORTE" width="37" colWidth="74" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="NOMBRE" type="NOTVISIBLE" caption="NOMBRE" mask="" width="50" colWidth="0" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="PRECIODOLAR" type="NOTVISIBLE" caption="precio dolar" mask="" width="50" colWidth="0" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="ESCLIENTEPROFORMA" type="NOTVISIBLE" caption="es cliente proforma" mask="" width="50" colWidth="0" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="DESCUENTO1" type="NOTVISIBLE" caption="Descuento1" mask="" width="50" colWidth="0" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+        <field name="DESCUENTO2" type="NOTVISIBLE" caption="Descuento2" mask="" width="50" colWidth="0" truncable="true" printable="true" editable="false" dataType="S" url="" fixedWidth="false"/>
+    </fields>
+    <autofilters/>
+    <chart>
+        <chartInfo version="2" tipo="PieChart" col1="" col2="" col3="" colLinea="" tope="0" useArrow="false" arrowValue="0" useUnderLevel="false" underLevelValue="0" useWeightedData="false" weightedDataValue="false" weightedDataArray="null" useRecodification="false" recodificationValue="0" rotationValue="0" showGrids="false" legendPosition="0" sortType="0" sortOrder="0" showConfiguration="true" showChartsOnInit=""/>
+    </chart>
+    <fafCubo engineMode="" operation="1" showFields="1" showRowTotal="1" showColTotal="1" onDblClick=""/>
+    <fafgrid engineMode="" showCheckBoxes="true" allowGroups="true" grillaCollapsada="false" customColumnWidth="false" printOrientation="Portrait" footerUserData="false" printGridColumnNames="false" showPageNumber="false" onLoadJs="ReservaPedidosInterelec_onLoadJs" autoRefresh="false" splitPosition="0" formEdition="DEFAULT" checkBoxEvent="ReservaPedidosInterelec_onRowSelection" showTree="false">
+        <groupsBy>
+            <groupBy name="PRODUCTO"/>
+        </groupsBy>
+        <ordersBy>
+            <orderBy name="OPERACIONITEMID" type="ASC"/>
+
+        </ordersBy>
+        <summaries>
+            <summary name="STOCK" type="SUM"/>
+            <summary name="CANTIDADPENDIENTE" type="SUM"/>
+            <summary name="CANTIDADASIGNADA" type="SUM"/>
+            <summary name="IMPORTEASIGNADO" type="SUM"/>
+        </summaries>
+    </fafgrid>
+    <parameters>
+        <parameter visible="1" req="0" type="" caption="Tipo Documento" name="WEBREPORTPARAM_TIPODOC" value="" isMain="0"/>
+        <parameter visible="1" req="1" type="" caption="Deposito" name="WEBREPROTPARAM_Deposito" value="114" isMain="0"/>
+
+        <parameter visible="1" req="0" type="FafDate" caption="Fecha Desde" name="WEBREPROTPARAM_FechaDesde" value="2017-01-01" isMain="0"/>
+        <parameter visible="1" req="0" type="FafDate" caption="Fecha Hasta " name="WEBREPROTPARAM_FechaHasta" value="2017-12-31" isMain="0"/>
+        <parameter visible="1" req="0" type="FafDecimal" caption="Rango minimo" name="WEBREPROTPARAM_rangoMinimo" value="100.0" isMain="0"/>
+        <parameter visible="1" req="0" type="FafDecimal" caption="Rango maximo" name="WEBREPROTPARAM_rangoMaximo" value="99999.0" isMain="0"/>
+        <parameter visible="1" req="1" type="" caption="Tipo doc Factura" name="WEBREPROTPARAM_facturaSubTipoID" value="190" isMain="0"/>
+        <parameter visible="1" req="1" type="" caption="Tipo doc Remito" name="WEBREPROTPARAM_RemitoID" value="278" isMain="0"/>
+        <parameter visible="1" req="0" type="FafBoolean" caption="isdevelop" name="isdevelop" value="true" isMain="0"/>
+    </parameters>
+</root>

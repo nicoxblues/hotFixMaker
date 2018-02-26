@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'windows-1252'?>
+<fafClasses>
+
+
+
+    <fafClass>
+        <atribute name="name" value="CONTABILIDADITEMVO"/>
+        <atribute name="className" value="CONTABILIDADITEMVO"/>
+        <atribute name="FullClassName" value="app.bsuite.servicios.contabilidad.model.ContabilidadItemVO"/>
+    </fafClass>
+
+
+</fafClasses>

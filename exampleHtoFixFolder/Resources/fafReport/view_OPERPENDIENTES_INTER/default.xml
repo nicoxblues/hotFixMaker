@@ -1,0 +1,54 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<root name='default' allowGroups='true' hidePageNumbers='false' captionGeneralSummary='TOTAL GENERAL' maxRows='20' showCheckBoxes='true' checkBoxEvent='' printOrientation='Portrait' grillaCollapsada='false' grillaFlex='false'>
+    <fields>
+        <field name="OPERACIONITEMID" type="NOTVISIBLE" width="0" order="0" caption="OperacionItemID" printable="false" mask="" truncable="true" url="FAF:EDIT:OperacionWizardVO:operacionWizard;primaryKey=OperacionItemID"/>
+        <field name="ORGANIZACION" type="VISIBLE" width="150" colWidth="150" order="1" caption="Organización" printable="true" mask="" truncable="false"/>
+        <field name="CODIGOCLIENTE" type="VISIBLE" width="150" order="1" caption="Codigo cliente" printable="true" mask="" truncable="true"/>
+
+        <field name="DOCUMENTO" type="VISIBLE" width="0" order="2" caption="Documento" printable="true" mask="" truncable="true"/>
+        <field name="COMPROBANTE" type="VISIBLE" width="0" order="3" caption="Comprobante" printable="true" mask="" truncable="true"/>
+        <field name="FECHA" type="VISIBLE" width="0" order="4" caption="Fecha" printable="true" mask="" truncable="true"/>
+        <field name="PRODUCTO" type="VISIBLE" width="0" order="5" caption="Producto" printable="true" mask="" truncable="true"/>
+        <field name="CODIGOPRODUCTO" type="VISIBLE" width="0" order="5" caption="Codigo Producto" printable="true" mask="" truncable="true"/>
+        <field name="ESTABLECIMIENTO" type="VISIBLE" width="0" order="5" caption="Establecimiento" printable="true" mask="" truncable="true"/>
+        <field name="PRECIO" type="VISIBLE" width="0" order="6" caption="Precio" printable="true" mask="MascaraPrecio" truncable="true"/>
+        <field name="MONEDA" type="VISIBLE" width="0" order="7" caption="Moneda" printable="true" mask="" truncable="true"/>
+        <field name="PENDIENTE" type="VISIBLE" width="0" order="8" caption="Pendiente" printable="true" mask="MascaraCantidad" truncable="true"/>
+        <field name="UNIDAD" type="VISIBLE" width="0" order="9" caption="Unidad" printable="true" mask="" truncable="true"/>
+        <field name="PARTIDA" type="VISIBLE" width="0" order="10" caption="Partida" printable="true" mask="" truncable="true"/>
+        <field name="DESCRIPCION" type="POPUP" width="0" order="11" caption="Descripción" printable="true" mask="" truncable="true"/>
+        <field name="FECHAHASTA" type="VISIBLE" width="0" order="12" caption="F. Hasta" printable="true" mask="" truncable="true"/>
+        <field name="FECHAPROXIMOPASO" type="VISIBLE" width="0" order="13" caption="F. Prox. Paso" printable="true" mask="" truncable="true"/>
+        <field name="CICLOITEMID" type="NOTVISIBLE" width="0" order="14" caption="CicloItemID" printable="true" mask="" truncable="true"/>
+        <field name="BPMPROCESOACTIVIDADID" type="NOTVISIBLE" width="0" order="14" caption="BPMProcesoActividadID" printable="true" mask="" truncable="true"/>
+        <field name="TRANSACCIONID" type="NOTVISIBLE" width="0" order="15" caption="TransaccionID" printable="false" mask="" truncable="true"/>
+    </fields>
+    <groupsBy>
+        <groupBy name="CODIGOCLIENTE" type="ASC" mask="" exclude="" hideTop="false" hideBottom="false" sum="BOTTOM" shortCaption="" order="1"/>
+    </groupsBy>
+    <summaries>
+    </summaries>
+    <ordersBy>
+    </ordersBy>
+    <alerts>
+        <alert name="" Columna="UNIDAD" condicion="" estilo=""/>
+        <alert name="" Columna="OPERACIONITEMID" condicion="" estilo=""/>
+        <alert name="" Columna="OPERACIONITEMID" condicion="" estilo=""/>
+        <alert name="" Columna="OPERACIONITEMID" condicion="" estilo=""/>
+        <alert name="" Columna="OPERACIONITEMID" condicion="" estilo=""/>
+    </alerts>
+    <chart>
+        <chartInfo name="" ancho="600" alto ="400" tipo="PieChart" categoryLabel="" valueLabel="" col1="UNIDAD" col2="PENDIENTE," col3="null" /></chart>
+    <cubeColumn>
+        <column name="" Columna="" />
+    </cubeColumn>
+
+    <cubeRow>
+        <row name="" Columna="" />
+    </cubeRow>
+
+    <cubeMeasure>
+        <measure name="" Columna="" />
+    </cubeMeasure>
+
+</root>
