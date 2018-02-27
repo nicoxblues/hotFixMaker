@@ -1,12 +1,12 @@
 from FileHandler import FileHandler
 
 
-moduleName = "Interelec"
-modulePath = "/home/administrador/workingSpace/Interelec"
-hotFixPath = "/home/administrador/HotFix/"
-resourcesPath = "/home/administrador/workingSpace/Interelec/Resource"
+moduleName = "INTERAPP"
+modulePath = "/home/nicoblues/workspaceSVN/Interelec"
+hotFixPath = "/home/nicoblues/hotfix/"
+resourcesPath = "/home/nicoblues/workspaceSVN/Interelec/Resource"
 
 
-fileH = FileHandler(12, moduleName, modulePath, hotFixPath, resourcesPath)
+fileH = FileHandler(10, moduleName, modulePath, hotFixPath, resourcesPath)
 
 fileH.createHotFixFolder()

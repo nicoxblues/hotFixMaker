@@ -14,13 +14,13 @@ class FileHandler:
         self.outputModule = []
         self.outputCodeFile = []
 
-        def getPathMap():
-            return {'realPath': [], 'relativePath': []}
+        self.extension = {'xml': [],
+                          'js': [],
+                          'sql': []}
 
-
-        self.filePath = {'fafReport': getPathMap(),
-                         moduleName + 'WEB': getPathMap(),
-                         'Script': getPathMap()}
+        self.folderForExtension = {'xml': hfPath + 'Resources',
+                                   'js': hfPath + 'WebHomeDeploy/general',
+                                   'sql': hfPath + 'Scripts/'}
 
     def getHFPath(self):
         return self.hfPath
@@ -42,69 +42,66 @@ class FileHandler:
 
     def setRealPath(self):
 
-        processViewReport = subprocess.Popen(
-            ['bash', os.path.dirname(os.path.abspath(__file__)) + '/static/findFile.sh', str(self.getDays()),
-             str(self.getPatchModule())],
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
         processCodeFiles = subprocess.Popen(
             ['bash', os.path.dirname(os.path.abspath(__file__)) + '/static/findFile.sh', str(self.getDays()),
              str(self.getPatchModule())],
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-        rowOutputReport, err = processViewReport.communicate()
-
-        if err is not None:
-            self.outputModule = rowOutputReport.splitlines()
-
         rowOutputCodeFile, err = processCodeFiles.communicate()
-
+        print rowOutputCodeFile
         if err is not None:
             self.outputCodeFile = rowOutputCodeFile.splitlines()
 
-        for line in self.outputModule:
-            for key, _ in self.filePath.iteritems():
-                if key is not None:
-                    indexPathKey = line.find(key)
-                    if indexPathKey == -1:
-                        pass
-                    else:
-                        self.filePath[key]['relativePath'].append(line[indexPathKey:])
-                        self.filePath[key]['realPath'].append(line)
-                        break
+        for line in self.outputCodeFile:
+            fileListExtension = self.extension[line[line.rfind(".") + 1:]]
+            # ['relativePath'].append(line[indexPathKey:])
+            fileListExtension.append(line)
 
     def createFolder(self):
-        for value in self.filePath.values():
-            relativePath = value['relativePath']
-            realP = value['realPath']
-            indexPath = 0
-            for pathValue in relativePath:
-                pathValue = pathValue.replace(self.moduleName + "WEB", "WebHomeDeploy")
-                fileName = pathValue[pathValue.rfind("/") + 1:]
-                folderPath = pathValue[:pathValue.rfind("/")]
-                if not os.path.exists(self.getHFPath() + folderPath):
-                    os.makedirs(self.getHFPath() + folderPath)
+        for key, value in self.extension.iteritems():
+            for fileSrc in value:
+                dstFolder = self.folderForExtension[key]
+                if key == 'xml':
+                    dstFolder += fileSrc[fileSrc.find(self.moduleName) + len(self.moduleName):fileSrc.rfind("/") + 1]
 
-                shutil.copy2(realP[indexPath], self.getHFPath() + folderPath + "/" + fileName)
-                indexPath += 1
+                if not os.path.exists(dstFolder):
+                    os.makedirs(dstFolder)
+
+                shutil.copy2(fileSrc, dstFolder)
 
     def createViewReport(self):
+
+        def indent(elem, level=0):
+            i = "\n" + level * "  "
+            if len(elem):
+                if not elem.text or not elem.text.strip():
+                    elem.text = i + "  "
+                if not elem.tail or not elem.tail.strip():
+                    elem.tail = i
+                for elem in elem:
+                    indent(elem, level + 1)
+                if not elem.tail or not elem.tail.strip():
+                    elem.tail = i
+            else:
+                if level and (not elem.tail or not elem.tail.strip()):
+                    elem.tail = i
 
         root = ET.Element("root")
         # doc = ET.SubElement(root, "files")
 
         tree = ET.ElementTree(root)
 
-        for line in self.filePath['fafReport']['relativePath']:
+        for line in self.extension['xml']:
             if line is not None:
                 print line
                 indexFafReport = line.find("fafReport")
+                if indexFafReport != -1:
+                    ET.SubElement(root, "file", ).text = line[indexFafReport:]
 
-                ET.SubElement(root, "file", ).text = line[indexFafReport:]
+                    # ****************** xml creator
 
-                # ****************** xml creator
-
-                # os.makedirs(self.getHFPath() + "test/test1/subDir")
-                #
-        if len(self.filePath['fafReport']['relativePath']) > 0:
-            tree.write(self.getHFPath() + "fafReport/files.xml")
+                    # os.makedirs(self.getHFPath() + "test/test1/subDir")
+                    #
+        if len(self.extension['xml']) > 0:
+            indent(root)
+            tree.write(self.folderForExtension['xml'] + "/files.xml", encoding='utf-8', method="xml")
