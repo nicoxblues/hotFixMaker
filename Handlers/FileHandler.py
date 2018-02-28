@@ -3,9 +3,14 @@ import os
 import xml.etree.cElementTree as ET
 import shutil
 
+from Handlers.XmlHandler import XmlHandler
+from Handlers.IHandler import IHandler
 
-class FileHandler:
+
+class FileHandler(IHandler):
     def __init__(self, days, moduleName, modulePath, hfPath, fafReport):
+
+        self.xmlName = []
         self.days = days
         self.moduleName = moduleName
         self.modulePath = modulePath
@@ -13,14 +18,16 @@ class FileHandler:
         self.reportPath = fafReport
         self.outputModule = []
         self.outputCodeFile = []
-
         self.extension = {'xml': [],
                           'js': [],
                           'sql': []}
 
-        self.folderForExtension = {'xml': hfPath + 'Resources',
+        self.folderForExtension = {'xml': hfPath + 'views',
                                    'js': hfPath + 'WebHomeDeploy/general',
-                                   'sql': hfPath + 'Scripts/'}
+                                   'sql': hfPath + 'sql/'}
+
+    def getPath(self):
+        return self.getHFPath()
 
     def getHFPath(self):
         return self.hfPath
@@ -34,27 +41,35 @@ class FileHandler:
     def getReportRoot(self):
         return self.reportPath
 
-    def createHotFixFolder(self):
-        self.setRealPath()
+    def createHotFixFolder(self, patch=os.path.dirname(os.path.abspath(__file__))):
+
+        self.setRealPath(patch)
         self.createFolder()
 
-        self.createViewReport()
+        hanlderxml = XmlHandler(XmlHandler.XmlType.MBU_MAIN, self)
+        hanlderxml.setFileName("clasesVO.xml")
+        hanlderxml.toDo()
 
-    def setRealPath(self):
+        print hanlderxml.tagCounter
+
+
+
+
+    def setRealPath(self,patch):
 
         processCodeFiles = subprocess.Popen(
-            ['bash', os.path.dirname(os.path.abspath(__file__)) + '/static/findFile.sh', str(self.getDays()),
+            ['bash', patch + '/static/findFile.sh', str(self.getDays()),
              str(self.getPatchModule())],
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         rowOutputCodeFile, err = processCodeFiles.communicate()
+
         print rowOutputCodeFile
         if err is not None:
             self.outputCodeFile = rowOutputCodeFile.splitlines()
 
         for line in self.outputCodeFile:
             fileListExtension = self.extension[line[line.rfind(".") + 1:]]
-            # ['relativePath'].append(line[indexPathKey:])
             fileListExtension.append(line)
 
     def createFolder(self):
@@ -62,7 +77,14 @@ class FileHandler:
             for fileSrc in value:
                 dstFolder = self.folderForExtension[key]
                 if key == 'xml':
-                    dstFolder += fileSrc[fileSrc.find(self.moduleName) + len(self.moduleName):fileSrc.rfind("/") + 1]
+                    if fileSrc.find('clases') != -1:
+                        dstFolder = self.getHFPath()
+                        self.xmlName.append(os.path.basename(fileSrc))
+                    else:
+                        dstFolder += fileSrc[fileSrc.find(self.moduleName) + len(self.moduleName):fileSrc.rfind("/") + 1]
+
+                if key == 'js':
+                    dstFolder += fileSrc[fileSrc.find('general') + len('general'):fileSrc.rfind("/") + 1]
 
                 if not os.path.exists(dstFolder):
                     os.makedirs(dstFolder)
