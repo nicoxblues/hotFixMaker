@@ -50,7 +50,7 @@ class FileHandler(IHandler):
         hanlderxml.setFileName("clasesVO.xml")
         hanlderxml.toDo()
 
-        print hanlderxml.tagCounter
+
 
 
 
@@ -126,4 +126,4 @@ class FileHandler(IHandler):
                     #
         if len(self.extension['xml']) > 0:
             indent(root)
-            tree.write(self.folderForExtension['xml'] + "/files.xml", encoding='utf-8', method="xml")
+            tree.write(self.folderForExtension['xml'] + "/files.xml", encoding='utf-8', method="xml", xml_declaration=True)

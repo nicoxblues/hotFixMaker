@@ -15,14 +15,20 @@ from Handlers.FileHandler import FileHandler
 # while row:
 #     print str(row[0]) + " " + str(row[1]) + " " + str(row[2])
 #     row = cursor.fetchone()
+from Handlers.ModuleHanlder import ModuleHandler
 
+
+AppPatch = os.path.dirname(os.path.abspath(__file__))
+ModuleHandler(AppPatch)
 
 moduleName = "INTERAPP"
-modulePath = "/home/administrador/workingSpace/Interelec"
-hotFixPath = "/home/administrador/hotfix/"
-resourcesPath = "/home/administrador/workingSpace/Interelec/Resource"
+modulePath = "/home/nicoblues/workspaceSVN/Interelec"
+hotFixPath = "/home/nicoblues/hotfix/"
+resourcesPath = "/home/nicoblues/workspaceSVN/Interelec/Resource"
 
 
-fileH = FileHandler(11, moduleName, modulePath, hotFixPath, resourcesPath)
-AppPatch = os.path.dirname(os.path.abspath(__file__))
+
+fileH = FileHandler(10, moduleName, modulePath, hotFixPath, resourcesPath)
+
+
 fileH.createHotFixFolder(patch=AppPatch)

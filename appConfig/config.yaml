@@ -1,0 +1,48 @@
+  configFile:
+      jbossFolder: /jboss
+      FafAppsFolder: /FAFApps
+
+
+  workSpaceFolders: [/home/nicoblues/workspaceSVN]
+  tagProvider:
+      fafmodules:
+             tag: '<FAFModule moduleDeployOrder="3" moduleDeployVersion="BY12" name="MODULE_NAME">
+                    <moduleBasePath>/FAFApps/RESOURCE_PATH</moduleBasePath>
+                        <moduleDeployPath>MODULE_WEB</moduleDeployPath>
+                        <target>
+                           <warTarget deployDirectory="JBOSS_PATH/server/default/deploy/ERPWeb.war" >ERPWeb.war</warTarget>
+                        </target>
+                    </FAFModule>'
+
+             path: /FAFApps/fafmodules.xml
+
+      mssql-ds:
+            tag: '<local-tx-datasource>
+                      <jndi-name>jdbc/emp/MODULE_NAME</jndi-name>
+
+                      <connection-url>jdbc:jtds:sqlserver://MODULE_HOST_SERVER/BASE_NAME;instance=sqlserver;tds=8.0;lastupdatecount=true</connection-url>
+                      <driver-class>net.sourceforge.jtds.jdbc.Driver</driver-class>
+
+                      <user-name>SQL_USER</user-name>
+                      <password>USER_PASS</password>
+
+                      <min-pool-size>1</min-pool-size>
+                      <max-pool-size>50</max-pool-size>
+
+                      <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+                      <blocking-timeout-millis>10000</blocking-timeout-millis>
+                      <idle-timeout-minutes>1</idle-timeout-minutes>
+                      <new-connection-sql>select 1</new-connection-sql>
+                      <check-valid-connection-sql>select 1</check-valid-connection-sql>
+                      <set-tx-query-timeout>true</set-tx-query-timeout>
+                      <query-timeout>60</query-timeout>
+                    </local-tx-datasource>'
+
+            path: /jboss/server/default/deploy/mssql-ds.xml
+
+      fafconfigmodules:
+              tag: '<FAFEmpresa name="EMPRESA_NAME">
+                        DEPENDENCES
+                    </FAFEmpresa>'
+
+              path: /FAFApps/fafconfigmodules.xml
