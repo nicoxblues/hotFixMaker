@@ -47,15 +47,10 @@ class FileHandler(IHandler):
         self.createFolder()
 
         hanlderxml = XmlHandler(XmlHandler.XmlType.MBU_MAIN, self)
-        hanlderxml.setFileName("clasesVO.xml")
+
         hanlderxml.toDo()
 
-
-
-
-
-
-    def setRealPath(self,patch):
+    def setRealPath(self, patch):
 
         processCodeFiles = subprocess.Popen(
             ['bash', patch + '/static/findFile.sh', str(self.getDays()),
@@ -81,7 +76,8 @@ class FileHandler(IHandler):
                         dstFolder = self.getHFPath()
                         self.xmlName.append(os.path.basename(fileSrc))
                     else:
-                        dstFolder += fileSrc[fileSrc.find(self.moduleName) + len(self.moduleName):fileSrc.rfind("/") + 1]
+                        dstFolder += fileSrc[
+                                     fileSrc.find(self.moduleName) + len(self.moduleName):fileSrc.rfind("/") + 1]
 
                 if key == 'js':
                     dstFolder += fileSrc[fileSrc.find('general') + len('general'):fileSrc.rfind("/") + 1]
@@ -126,4 +122,5 @@ class FileHandler(IHandler):
                     #
         if len(self.extension['xml']) > 0:
             indent(root)
-            tree.write(self.folderForExtension['xml'] + "/files.xml", encoding='utf-8', method="xml", xml_declaration=True)
+            tree.write(self.folderForExtension['xml'] + os.sep + "files.xml", encoding='utf-8', method="xml",
+                       xml_declaration=True)

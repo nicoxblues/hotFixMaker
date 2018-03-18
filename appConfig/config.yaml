@@ -1,6 +1,8 @@
   configFile:
-      jbossFolder: /jboss
-      FafAppsFolder: /FAFApps
+      jbossFolder: &jbossDir /jboss
+      FafAppsFolder: &appsDir /FAFApps
+
+
 
 
   workSpaceFolders: [/home/nicoblues/workspaceSVN]
@@ -14,7 +16,7 @@
                         </target>
                     </FAFModule>'
 
-             path: /FAFApps/fafmodules.xml
+             path: [*appsDir,'/fafmodules.xml']
 
       mssql-ds:
             tag: '<local-tx-datasource>
@@ -38,11 +40,10 @@
                       <query-timeout>60</query-timeout>
                     </local-tx-datasource>'
 
-            path: /jboss/server/default/deploy/mssql-ds.xml
+            path: [*jbossDir , '/server/default/deploy/mssql-ds.xml']
 
       fafconfigmodules:
-              tag: '<FAFEmpresa name="EMPRESA_NAME">
-                        DEPENDENCES
+              tag: '<FAFEmpresa name="MODULE_NAME">
                     </FAFEmpresa>'
 
-              path: /FAFApps/fafconfigmodules.xml
+              path: [*appsDir,'/fafconfigmodules.xml' ]

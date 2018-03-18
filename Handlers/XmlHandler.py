@@ -6,21 +6,17 @@ import xml.etree.cElementTree as ET
 
 
 class XmlHandler(IHandler):
-
     class XmlType(Enum):
         MBU_MAIN = 1
         PARSER = 2
 
     def __init__(self, fileTy, handler, parseHandler=None):
 
-
-
         self.calledHandler = handler
         self.xmlTy = fileTy
         # TODO esto es un asco esta muy mal, hay que cambiarlo esta mal que el constructor sepa que es un mbu.xml
         self.mainXmlPath = handler.getPath() + 'mbu.xml'
         self.parseHandler = parseHandler
-
 
     def setFileName(self, fileName):
         pass
@@ -35,6 +31,9 @@ class XmlHandler(IHandler):
         if self.xmlTy == self.XmlType.PARSER:
             self.parse()
 
+    def getValueAttr(self, tagName, attrVal):
+        return self.parseHandler.getAttr(tagName, attrName=attrVal)
+
     def parse(self):
 
         if self.parseHandler is None:
@@ -42,19 +41,16 @@ class XmlHandler(IHandler):
             root = tree.getroot()
             self.parseHandler = DefaultParserHandler(root)
 
-
     def addElement(self, element):
         self.parseHandler.addElement(element)
 
+    def writeFile(self, indetFile=False):
 
-    def writeFile(self, indetFile= False):
-
-        fileMainRoot  = self.parseHandler.getMainRoot()
+        fileMainRoot = self.parseHandler.getMainRoot()
         tree = ET.ElementTree(fileMainRoot)
 
         if indetFile:
             self.indent(fileMainRoot)
-
 
         tree.write(self.calledHandler.getPath(), encoding="utf-8", method="xml", xml_declaration=True)
 
@@ -75,8 +71,6 @@ class XmlHandler(IHandler):
 
     def createXmlFile(self):
         print self.calledHandler.getPath()
-
-
 
         root = ET.Element("config")
         ET.SubElement(root, "version").text = "1.0.13.55"
