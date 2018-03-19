@@ -57,11 +57,11 @@ class AppIU:
         vsb.grid(column=1, row=10, sticky='ns', in_=self.root)
         hsb.grid(column=0, row=11, sticky='ew', in_=self.root)
 
-        # modTest = Module("moduleTest", "192.168.101.01", "/home/nicoblues/workspaceSVN/Lafont/Codigo/LafontWEB",
-        #                   "FAF12_LAFONT", "sa", "Pentatonica_2016",
-        #                   "LAFONTAPP", dependences=[])
-        #
-        # self.module.addModule(modTest)
+        modTest = Module("moduleTest", "192.168.101.01", "/home/nicoblues/workspaceSVN/Lafont/Codigo/LafontWEB",
+                          "FAF12_LAFONT", "sa", "Pentatonica_2016",
+                          "LAFONTAPP", dependences=[])
+
+        self.module.addModule(modTest)
 
     def deleteItem(self, e):
         if e.keycode == 119:

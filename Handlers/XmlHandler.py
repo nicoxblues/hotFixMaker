@@ -10,19 +10,27 @@ class XmlHandler(IHandler):
         MBU_MAIN = 1
         PARSER = 2
 
-    def __init__(self, fileTy, handler, parseHandler=None):
+    def __init__(self, fileTy, handler, parseHandler=None, file_path=""):
 
         self.calledHandler = handler
         self.xmlTy = fileTy
         # TODO esto es un asco esta muy mal, hay que cambiarlo esta mal que el constructor sepa que es un mbu.xml
         self.mainXmlPath = handler.getPath() + 'mbu.xml'
         self.parseHandler = parseHandler
+        self.filePath = file_path
 
-    def setFileName(self, fileName):
+    def setFileName(self, fileName): # al pedo creo que se puede sacar
         pass
 
-    def getPath(self):  # lo imagine mas complicado de lo que en realidad es
-        return self.calledHandler.getPath()
+    def getPath(
+            self):  # lo imagine mas complicado de lo que en realidad es TODO cambiar esto que el path venga definido en el constructor
+        ret = ""
+        if self.filePath == "":
+            ret = self.calledHandler.getPath()
+        else:
+            ret = self.filePath
+
+        return ret
 
     def toDo(self):
         if self.xmlTy == self.XmlType.MBU_MAIN:
@@ -37,6 +45,7 @@ class XmlHandler(IHandler):
     def parse(self):
 
         if self.parseHandler is None:
+            
             tree = ET.parse(self.getPath())
             root = tree.getroot()
             self.parseHandler = DefaultParserHandler(root)
@@ -52,7 +61,7 @@ class XmlHandler(IHandler):
         if indetFile:
             self.indent(fileMainRoot)
 
-        tree.write(self.calledHandler.getPath(), encoding="utf-8", method="xml", xml_declaration=True)
+        tree.write(self.filePath, encoding="utf-8", method="xml", xml_declaration=True)
 
     def indent(self, elem, level=0):
         i = "\n" + level * "  "

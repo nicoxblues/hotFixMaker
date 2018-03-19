@@ -1,3 +1,4 @@
+# coding=utf-8
 import yaml
 
 from Handlers.IHandler import IHandler
@@ -30,11 +31,13 @@ class ModuleHandler(IHandler):
             provider = self.configuration["tagProvider"]
 
             for providerFileName, valueProvider in provider.iteritems():
-                handler = XmlHandler(XmlHandler.XmlType.PARSER, self)
+
                 root = ET.fromstring(valueProvider["tag"])
+                filePath = valueProvider["path"][0] + valueProvider["path"][1]
+                handler = XmlHandler(XmlHandler.XmlType.PARSER, self, file_path=filePath)
                 self.xmlFileProvider[providerFileName] = [handler, root,
                                                           valueProvider["path"][0] + valueProvider["path"][1]]
-                self.currentProvider = providerFileName
+
                 handler.toDo()
 
         def createCacheModules():
@@ -87,7 +90,7 @@ class ModuleHandler(IHandler):
         module.moduleConfig["JBOSS_PATH"] = self.configuration.get("configFile").get("jbossFolder")
         for providerName, valueProvider in self.xmlFileProvider.iteritems():
             # self.currentProvider = providerName
-            # xmlHandler = valueProvider[self.INDEX_HANDLER]
+            xmlHandler = valueProvider[self.INDEX_HANDLER]
             # xmlHandler.toDo()
 
             tagProvider = valueProvider[self.INDEX_TAG_PROVIDER]
@@ -99,5 +102,5 @@ class ModuleHandler(IHandler):
     def getPath(self):
         if self.currentProvider == '':  # TODO cambiar este parche mugroso
             return ""
-        else:
+        else: # TODO esto del current provider no iría mas verificar sacar
             return self.xmlFileProvider[self.currentProvider][self.INDEX_PATH]
