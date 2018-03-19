@@ -22,9 +22,7 @@ class XmlHandler(IHandler):
     def setFileName(self, fileName): # al pedo creo que se puede sacar
         pass
 
-    def getPath(
-            self):  # lo imagine mas complicado de lo que en realidad es TODO cambiar esto que el path venga definido en el constructor
-        ret = ""
+    def getPath(self):
         if self.filePath == "":
             ret = self.calledHandler.getPath()
         else:
@@ -45,7 +43,7 @@ class XmlHandler(IHandler):
     def parse(self):
 
         if self.parseHandler is None:
-            
+
             tree = ET.parse(self.getPath())
             root = tree.getroot()
             self.parseHandler = DefaultParserHandler(root)
@@ -63,7 +61,7 @@ class XmlHandler(IHandler):
 
         tree.write(self.filePath, encoding="utf-8", method="xml", xml_declaration=True)
 
-    def indent(self, elem, level=0):
+    def indent(self, elem, level=0): # TODO debe haber una mejor y mas practica manera de indentar
         i = "\n" + level * "  "
         if len(elem):
             if not elem.text or not elem.text.strip():
@@ -78,7 +76,7 @@ class XmlHandler(IHandler):
             if level and (not elem.tail or not elem.tail.strip()):
                 elem.tail = i
 
-    def createXmlFile(self):
+    def createXmlFile(self): #deprecado por ahora
         print self.calledHandler.getPath()
 
         root = ET.Element("config")
