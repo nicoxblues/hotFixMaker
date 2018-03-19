@@ -3,6 +3,7 @@ import yaml
 from Handlers.IHandler import IHandler
 from Handlers.XmlHandler import XmlHandler
 from appConfig.Module import Module
+
 import sys
 import os
 
@@ -24,26 +25,23 @@ class ModuleHandler(IHandler):
         app_root_path = os.path.dirname(getattr(sys.modules['__main__'], '__file__'))
 
         self.moduleCacheList = []
+
         def loadXmlProviders():
             provider = self.configuration["tagProvider"]
 
             for providerFileName, valueProvider in provider.iteritems():
                 handler = XmlHandler(XmlHandler.XmlType.PARSER, self)
                 root = ET.fromstring(valueProvider["tag"])
-                self.xmlFileProvider[providerFileName] = [handler, root, valueProvider["path"][0] + valueProvider["path"][1]]
+                self.xmlFileProvider[providerFileName] = [handler, root,
+                                                          valueProvider["path"][0] + valueProvider["path"][1]]
                 self.currentProvider = providerFileName
                 handler.toDo()
-
 
         def createCacheModules():
             moduleProvider = self.xmlFileProvider["fafmodules"]
             elementModuleList = moduleProvider[self.INDEX_HANDLER].parseHandler.getElementList("FAFModule")
             for moduleElement in elementModuleList:
                 self.moduleCacheList.append(moduleElement.attrib["name"])
-
-
-
-
 
         self.configuration = loadConfig(app_root_path)
 
@@ -56,7 +54,7 @@ class ModuleHandler(IHandler):
         loadXmlProviders()
         createCacheModules()
 
-    def meshModuleWithProvider(self, module, provider,xmlHandler):
+    def meshModuleWithProvider(self, module, provider, xmlHandler):
 
         def replace(tagValue):
             retVal = tagValue

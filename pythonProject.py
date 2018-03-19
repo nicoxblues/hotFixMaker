@@ -19,7 +19,7 @@ from Handlers.ModuleHanlder import ModuleHandler
 
 
 AppPatch = os.path.dirname(os.path.abspath(__file__))
-ModuleHandler(AppPatch)
+ModuleHandler()
 
 moduleName = "INTERAPP"
 modulePath = "/home/nicoblues/workspaceSVN/Interelec"
@@ -31,4 +31,4 @@ resourcesPath = "/home/nicoblues/workspaceSVN/Interelec/Resource"
 fileH = FileHandler(10, moduleName, modulePath, hotFixPath, resourcesPath)
 
 
-fileH.createHotFixFolder(patch=AppPatch)
+#fileH.createHotFixFolder(patch=AppPatch)
